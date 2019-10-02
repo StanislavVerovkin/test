@@ -1,17 +1,1 @@
-<h3 class="page-header">Add Invoice</h3>
-<button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button><br>
-<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit(invoiceForm.value)">
-  <div formArrayName="itemRows">
-    <div *ngFor="let itemrow of invoiceForm.controls.itemRows.controls; let i=index" [formGroupName]="i">
-      <h4>Invoice Row #{{ i + 1 }}</h4>
-      <div class="form-group">
-        <label>Item Name</label>
-        <input formControlName="itemname" class="form-control">
-      </div>
-      <button *ngIf="invoiceForm.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger">
-        Delete Button
-      </button>
-    </div>
-  </div>
-  <button type="submit">Save</button>
-</form>
+<button (click)="onSubmit(teamRows[1])">Submit</button>
