@@ -1,77 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { disableDebugTools } from '@angular/platform-browser';
+import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.scss' ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges, DoCheck {
 
-  teamRows: any[] = [
-    { teamName: 'Bob', teamRole: 'Inter', admin_id: 43, role_id: 6 },
-    { teamName: 'Bob1', teamRole: 'Inter1', admin_id: 12, role_id: 7 },
-    { teamName: 'Bob2', teamRole: 'Inter2', admin_id: 34, role_id: 8 },
-  ];
+  public Editor = ClassicEditor;
 
-  assignedTeam = [
-    { full_name: 'Bob', role: 'Inter', admin_id: 43, role_id: 6 },
-    { full_name: 'Bob1', role: 'Inter1', admin_id: 12, role_id: 7 },
-    { full_name: 'Bob2', role: 'Inter1', admin_id: 34, role_id: 8 },
-  ];
+  public model = {
+    goals: '',
+    needs: '',
+    bounties: '',
+  };
 
-  allAdmins = [
-    { full_name: 'test', id: 2 },
-    { full_name: 'test1', id: 3 },
-    { full_name: 'test2', id: 4 },
-  ];
+  data = {
+    teamRows: [
+      { name: 'Adam', admin_id: 3 },
+      { name: 'Stas', admin_id: 123 },
+      { name: 'Valter', admin_id: 13 },
+    ],
+    roleRows: [
+      { title: 'Lead Bizdev', role_id: 5 },
+      { title: 'Role', role_id: 10 },
+      { title: 'Support', role_id: 11 },
+    ]
+  };
 
-  allRoles = [
-    { key: 5, role: 'Role' },
-    { key: 2, role: 'Integrator' },
-  ];
-
-  newRole = 2;
+  arr: any[] = [];
 
   constructor() {
   }
 
   ngOnInit() {
-
   }
 
-  onSubmit(data) {
+  ngOnChanges() {
+  }
 
-    this.teamRows.push({
-      teamName: 'test',
-      teamRole: 'Role'
-    });
+  ngDoCheck() {
+    console.log(this.model);
+  }
 
-    /**
-     * Add assigned admin
-     */
 
-    this.allAdmins.forEach(item => {
-      this.teamRows.forEach(team => {
-        if (team.teamName === item.full_name) {
-          this.teamRows[ this.teamRows.length - 1 ].admin_id = item.id;
-        }
-      });
-    });
+  onSubmit() {
 
-    this.allRoles.forEach(item => {
-      this.teamRows.forEach(team => {
-        if (team.teamRole === item.role) {
-          this.teamRows[ this.teamRows.length - 1 ].role_id = item.key;
-        }
-      });
-    });
+    this.arr = this.data.teamRows
+      .map((teamRow, index) => ({
+        ...teamRow, ...this.data.roleRows[ index ]
+      }));
 
-    /**
-     * Edit assigned admin
-     */
-
-    data.role_id = this.newRole;
+    console.log(this.arr);
 
   }
 }

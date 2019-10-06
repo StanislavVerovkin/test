@@ -1,1 +1,22 @@
-<button (click)="onSubmit(teamRows[1])">Submit</button>
+<div class="container">
+  <ckeditor
+    [editor]="Editor"
+    [(ngModel)]="model.goals"
+    [config]="{ toolbar: ['|', 'bold', 'italic',  'link', 'bulletedList', 'numberedList', 'blockQuote' ] }"
+  >
+  </ckeditor>
+
+  <ckeditor
+    [editor]="Editor"
+    [(ngModel)]="model.needs"
+    [config]="{ toolbar: ['|', 'bold', 'italic',  'link', 'bulletedList', 'numberedList', 'blockQuote' ] }"
+  >
+  </ckeditor>
+
+  <ckeditor
+    [editor]="Editor"
+    [(ngModel)]="model.bounties"
+    [config]="{ toolbar: ['|', 'bold', 'italic',  'link', 'bulletedList', 'numberedList', 'blockQuote' ] }"
+  >
+  </ckeditor>
+</div>
