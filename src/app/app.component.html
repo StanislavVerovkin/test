@@ -1,22 +1,11 @@
-<div class="container">
-  <ckeditor
-    [editor]="Editor"
-    [(ngModel)]="model.goals"
-    [config]="{ toolbar: ['|', 'bold', 'italic',  'link', 'bulletedList', 'numberedList', 'blockQuote' ] }"
-  >
-  </ckeditor>
-
-  <ckeditor
-    [editor]="Editor"
-    [(ngModel)]="model.needs"
-    [config]="{ toolbar: ['|', 'bold', 'italic',  'link', 'bulletedList', 'numberedList', 'blockQuote' ] }"
-  >
-  </ckeditor>
-
-  <ckeditor
-    [editor]="Editor"
-    [(ngModel)]="model.bounties"
-    [config]="{ toolbar: ['|', 'bold', 'italic',  'link', 'bulletedList', 'numberedList', 'blockQuote' ] }"
-  >
-  </ckeditor>
+<div *ngFor="let a of arr">
+  <div #textContent [id]="'read-more' + a.id">
+    {{a.body}}
+  </div>
+  <div>
+    <a read [readMore-element]="textContent" [readMore-length]="100">
+      <span class="less">Read Less</span>
+      <span class="more">Read More</span>
+    </a>
+  </div>
 </div>

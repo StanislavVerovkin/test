@@ -1,60 +1,55 @@
-import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, QueryList, ViewChildren } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
-
+import { of, throwError } from 'rxjs';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { Error } from 'tslint/lib/error';
+import { HttpClient } from '@angular/common/http';
+import { ReadDirective } from './read.directive';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.scss' ]
 })
-export class AppComponent implements OnInit, OnChanges, DoCheck {
-
-  public Editor = ClassicEditor;
-
-  public model = {
-    goals: '',
-    needs: '',
-    bounties: '',
-  };
-
-  data = {
-    teamRows: [
-      { name: 'Adam', admin_id: 3 },
-      { name: 'Stas', admin_id: 123 },
-      { name: 'Valter', admin_id: 13 },
-    ],
-    roleRows: [
-      { title: 'Lead Bizdev', role_id: 5 },
-      { title: 'Role', role_id: 10 },
-      { title: 'Support', role_id: 11 },
-    ]
-  };
-
-  arr: any[] = [];
+export class AppComponent implements OnInit {
 
   constructor() {
   }
 
+  public arr = [
+    {
+      id: 1,
+      body: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной\n' +
+      '    "рыбой"\n' +
+      '    для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и\n' +
+      '    форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных\n' +
+      '    изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация\n' +
+      '    листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа\n' +
+      '    Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.'
+    },
+    {
+      id: 2,
+      body: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной\n' +
+      '    "рыбой"\n' +
+      '    для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и\n' +
+      '    форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных\n' +
+      '    изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация\n' +
+      '    листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа\n' +
+      '    Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.'
+    },
+    {
+      id: 3,
+      body: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной\n' +
+      '    "рыбой"\n' +
+      '    для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и\n' +
+      '    форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных\n' +
+      '    изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация\n' +
+      '    листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа\n' +
+      '    Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.'
+    },
+  ];
+
+
   ngOnInit() {
-  }
-
-  ngOnChanges() {
-  }
-
-  ngDoCheck() {
-    console.log(this.model);
-  }
-
-
-  onSubmit() {
-
-    this.arr = this.data.teamRows
-      .map((teamRow, index) => ({
-        ...teamRow, ...this.data.roleRows[ index ]
-      }));
-
-    console.log(this.arr);
-
   }
 }

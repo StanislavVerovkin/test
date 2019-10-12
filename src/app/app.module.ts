@@ -5,10 +5,13 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { HttpClientModule } from '@angular/common/http';
+import { ReadDirective } from './read.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ReadDirective
   ],
   imports: [
     BrowserModule,
@@ -16,6 +19,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     BrowserAnimationsModule,
     CKEditorModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]
