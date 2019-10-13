@@ -13,6 +13,8 @@ import { ReadDirective } from './read.directive';
 })
 export class AppComponent implements OnInit {
 
+  isShow = false;
+
   constructor() {
   }
 
@@ -51,5 +53,11 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+  }
+
+  show(event) {
+    if (event.target === event.currentTarget) {
+      this.isShow = !this.isShow;
+    }
   }
 }

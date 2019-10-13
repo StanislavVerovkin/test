@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ReadDirective } from './read.directive';
+import { EditDirective } from './edit.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReadDirective
+    ReadDirective,
+    EditDirective,
   ],
   imports: [
     BrowserModule,
