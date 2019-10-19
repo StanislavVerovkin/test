@@ -1,17 +1,75 @@
-<div *ngFor="let a of arr">
-  <div #textContent [id]="'read-more' + a.id">
-    {{a.body}}
+<div class="wrapper">
+
+  <div class="tabs-panel">
+
+    <input type="radio" id="input1" name="tab" checked="checked"/>
+    <input type="radio" id="input2" name="tab"/>
+    <input type="radio" id="input3" name="tab"/>
+    <input type="radio" id="input4" name="tab"/>
+
+    <div class="tabs">
+      <div class="tab">
+        <label for="input1" onclick>
+          <div class="content">
+            <div class="text">Week</div>
+          </div>
+        </label>
+      </div>
+      <div class="tab">
+        <label for="input2" onclick>
+          <div class="content">
+            <div class="text">Month</div>
+          </div>
+        </label>
+      </div>
+      <div class="tab">
+        <label for="input3" onclick>
+          <div class="content">
+            <div class="text">Year</div>
+          </div>
+        </label>
+      </div>
+      <div class="tab">
+        <label for="input4" onclick>
+          <div class="content">
+            <div class="text">Custom</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="panels">
+
+      <div class="tab-panel" id="panel1">
+        <div class="content">
+          Content 1
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel2">
+        <div class="content">
+          Content 2
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel3">
+        <div class="content">
+          Content 3
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel4">
+        <div class="content">
+          Content 4
+        </div>
+      </div>
+
+    </div>
+
   </div>
-  <div>
-    <a read [readMore-element]="textContent" [readMore-length]="100">
-      <span class="less">Read Less</span>
-      <span class="more">Read More</span>
-    </a>
-  </div>
+
 </div>
 
-<div (click)="show($event)" class="block">
-  <div *ngIf="isShow">
-    <input>
-  </div>
-</div>
+
